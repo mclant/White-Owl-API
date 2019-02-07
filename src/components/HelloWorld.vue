@@ -1,3 +1,5 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.22/dist/vue.js"></script>
+
 <template>
   <v-container>
     <v-layout
@@ -6,7 +8,7 @@
     >
       <v-flex xs12>
         <v-img
-          :src="require('../assets/logo.svg')"
+          :src="require('../assets/whiteowl.png')"
           class="my-3"
           contain
           height="200"
@@ -15,14 +17,13 @@
 
       <v-flex mb-4>
         <h1 class="display-2 font-weight-bold mb-3">
-          Welcome to Vuetify
+          Welcome to White Owl Security
         </h1>
         <p class="subheading font-weight-regular">
-          For help and collaboration with other Vuetify developers,
-          <br>please join our online
-          <a href="https://community.vuetifyjs.com" target="_blank">Discord Community</a>
+          Log In to re-run your security scan
         </p>
       </v-flex>
+      
 
       <v-flex
         mb-5
@@ -85,6 +86,7 @@
 </template>
 
 <script>
+
   export default {
     data: () => ({
       ecosystem: [
@@ -138,8 +140,10 @@
         }
 
       ]
-    })
+    }),
+    
   }
+  
 </script>
 
 <style>

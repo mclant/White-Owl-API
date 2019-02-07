@@ -6,32 +6,73 @@
         <span class="font-weight-light">MATERIAL DESIGN</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
+
       <v-btn
-        flat
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-      >
-        <span class="mr-2">Latest Release</span>
+        id="qsLoginBtn"
+        v-if="!authenticated"
+        @click="login"
+        >
+        Log In
+      </v-btn>
+
+      <v-btn
+        id="qsLogoutBtn"
+        v-if="!authenticated"
+        @click="logout"
+        >
+        Log Out
       </v-btn>
     </v-toolbar>
+
+    <div class="container">
+      <router-view
+        :auth="auth"
+        :authenticated="authenticated">
+      </router-view>
+    </div>
 
     <v-content>
       <HelloWorld/>
     </v-content>
+
+
   </v-app>
 </template>
 
+
 <script>
+import AuthService from './auth/AuthService'
+
+const auth = new AuthService()
+
 import HelloWorld from './components/HelloWorld'
 
 export default {
-  name: 'App',
+  name: 'app',
   components: {
     HelloWorld
   },
   data () {
     return {
-      //
+      auth,
+      authenticated: auth.authenticated
+    }
+  },
+  created () {
+    auth.authNotifier.on('authChange', authState => {
+      this.authenticated = authState.authenticated
+    })
+
+    if (auth.getAuthenticatedFlag() === 'true') {
+      auth.renewSession()
+    }
+  },
+  methods: {
+    login () {
+      auth.login()
+    },
+    logout () {
+      auth.logout()
     }
   }
 }
