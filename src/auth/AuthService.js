@@ -44,6 +44,7 @@ export default class AuthService {
     localStorage.setItem('loggedIn', true)
   }
 
+  
   renewSession () {
     this.auth0.checkSession({}, (err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
@@ -54,6 +55,8 @@ export default class AuthService {
       }
     })
   }
+
+  
 
   logout () {
     // Clear access token and ID token from local storage
@@ -78,4 +81,3 @@ export default class AuthService {
     return new Date().getTime() < this.expiresAt && this.getAuthenticatedFlag() === 'true'
   }
 }
-
