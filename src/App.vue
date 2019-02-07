@@ -35,7 +35,6 @@
       <HelloWorld/>
     </v-content>
 
-
   </v-app>
 </template>
 
