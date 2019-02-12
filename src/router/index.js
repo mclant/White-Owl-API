@@ -6,11 +6,11 @@ import Router from 'vue-router'
 
 Vue.use(Router);
 
-const router = new Router({
+export const router = new Router({
   mode: 'history',
   routes: [
     {
-      path: '/',
+      path: '',
       name: 'Home',
       component: Home
     },
