@@ -1,9 +1,10 @@
 import Vue from 'vue'
-import Router from 'vue-router'
 import Home from '@/components/Home'
 import Callback from '@/components/Callback'
+import runScan from '@/components/run_scan'
+import Router from 'vue-router'
 
-Vue.use(Router)
+Vue.use(Router);
 
 const router = new Router({
   mode: 'history',
@@ -17,6 +18,11 @@ const router = new Router({
       path: '/callback',
       name: 'Callback',
       component: Callback
+    },
+    {
+      path: '/runscan',
+      name: 'runScan',
+      component: runScan
     },
     {
       path: '*',

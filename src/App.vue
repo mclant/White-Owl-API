@@ -17,7 +17,7 @@
 
       <v-btn
         id="qsLogoutBtn"
-        v-if="!authenticated"
+        v-if="authenticated"
         @click="logout"
         >
         Log Out
