@@ -8,7 +8,7 @@
     >
       <v-flex xs12>
         <v-img
-          :src="require('../assets/whiteowl.png')"
+          :src="require('../assets/whiteowl_black.png')"
           class="my-3"
           contain
           height="200"
