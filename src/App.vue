@@ -7,6 +7,9 @@
       </v-toolbar-title>
       <v-spacer></v-spacer>
 
+      <p v-if="!authenticated">Please log in</p>
+      <p v-if="authenticated">You are logged in</p>
+
       <v-btn
         id="qsLoginBtn"
         v-if="!authenticated"
