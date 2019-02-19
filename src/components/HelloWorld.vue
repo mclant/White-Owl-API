@@ -24,9 +24,10 @@
             class="subheading font-weight-regular">
             Log In to re-run your security scan
           </p>
-          <p v-if="authenticated">
-            You have logged in! yay!
-          </p>
+          <v-btn
+            @click="login">
+            Log In
+          </v-btn>
         </div>
       </v-flex>
       
@@ -105,14 +106,14 @@ import AuthService from './../auth/AuthService'
 
 const auth = new AuthService()
 
-  export default {
-    name: '#my_app',
-    data () {
+export default {
+  name: '#my_app',
+  data () {
       return {
       auth,
       authenticated: auth.authenticated
      }
-    },
+  },
 
   created () {
     auth.authNotifier.on('authChange', authState => {
@@ -123,8 +124,16 @@ const auth = new AuthService()
       auth.renewSession()
     }
   },
-    
+  methods: {
+    login () {
+      auth.login()
+    },
+    logout () {
+      auth.logout()
+    }
   }
+    
+}
   
 </script>
 

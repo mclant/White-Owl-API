@@ -1,5 +1,10 @@
 <template>
-    <div>
-        You have logged in.
-    </div>
+    <v-container>
+        <v-layout
+            text-xs-center
+            wrap>
+            
+        </v-layout>
+    </v-container>
 </template>
+

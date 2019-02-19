@@ -7,9 +7,6 @@
       </v-toolbar-title>
       <v-spacer></v-spacer>
 
-      <p v-if="!authenticated">Please log in</p>
-      <p v-if="authenticated">You are logged in</p>
-
       <v-btn
         id="qsLoginBtn"
         v-if="!authenticated"
@@ -34,8 +31,14 @@
       </router-view>
     </div>
 
-    <v-content>
+    <v-content
+      v-if="!authenticated">
       <HelloWorld/>
+    </v-content>
+
+    <v-content
+      v-if="authenticated">
+      <runScan/>
     </v-content>
 
   </v-app>
@@ -48,11 +51,13 @@ import AuthService from './auth/AuthService'
 const auth = new AuthService()
 
 import HelloWorld from './components/HelloWorld'
+import runScan from './components/run_scan'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    HelloWorld,
+    runScan,
   },
   data () {
     return {
