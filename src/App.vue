@@ -37,7 +37,7 @@
     </v-content>
 
     <v-content
-      v-if="authenticated">
+      v-if="!authenticated">
       <runScan/>
     </v-content>
 

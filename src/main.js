@@ -19,3 +19,13 @@ new Vue({
   router,
   render: h => h(App),
 }).$mount('#app')
+
+Vue.component('ip-item', {
+  template: '\
+          <li>\
+          {{ title }}\
+          <button v-on:click="$emit(\'remove\')">Remove</button>\
+          </li>\
+      ',
+  props: ['title']
+})
