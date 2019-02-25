@@ -25,7 +25,7 @@
             >
             
             <form v-on:submit.prevent="addNewIP">
-                <label for="new-ip">Add an IP Address</label>
+                <label for="new-ip">Add an IP Address</label><br>
                 <input
                 v-model="newAddress"
                 id="new-ip"
@@ -34,15 +34,14 @@
                 <button>Add</button>
             </form>
             <ul>
-                <li>
                 <ip-item
                 v-for="(ip, index) in ips"
                 v-bind:key="ip.id"
-                v-bind:title="ip.title"
+                v-bind:address="ip.address"
                 v-on:remove="ips.splice(index, 1)"
                 ></ip-item>
-                </li>
             </ul>
+
 
             </v-flex>
             
@@ -51,11 +50,11 @@
 </template>
 
 <script>
-import ipComponent from '../main'
+import IpItem from './IpItem'
 
 export default {
     components: {
-        ipComponent
+        IpItem,
     },
     data () {
         return {
@@ -81,12 +80,6 @@ export default {
             this.newAddress = ''
         }
     },
-    template: '\
-            <li>\
-            {{ title }}\
-            <button v-on:click="$emit(\'remove\')">Remove</button>\
-            </li>\
-        ',
     props: ['title']
 
 }
