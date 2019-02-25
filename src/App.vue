@@ -32,7 +32,7 @@
     </div>
 
     <v-content
-      v-if="!authenticated">
+      v-if="authenticated">
       <HelloWorld/>
     </v-content>
 

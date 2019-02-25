@@ -4,19 +4,7 @@
             text-xs-center
             wrap
             justify-space-between>
-            <v-flex
-                xs12
-                md4
-            >
-                <v-form ref="form">
-                <v-text-field
-                    v-model="ipnumber"
-                    :counter="max"
-                    :rules="rules"
-                    label="How many IP addresses do you want to test for?"
-                ></v-text-field>
-                </v-form>
-            </v-flex>
+            
 
 
             <v-flex
@@ -60,12 +48,11 @@ export default {
         return {
             ipnumber: '1',
             
+            id: '',
+            address: '',
+
             rawhtml: '<p>my name is matt</p>',
             ips: [
-                {
-                    id: '',
-                    address: '',
-                }
             ],
             nextIPid: 0,
             newAddress: '',
