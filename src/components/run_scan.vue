@@ -9,9 +9,10 @@
 
             <v-flex
                 xs12
-                md6
+                
             >
             
+            <!--
             <form v-on:submit.prevent="addNewIP">
                 <label for="new-ip">Add an IP Address</label><br>
                 <input
@@ -21,6 +22,16 @@
                 >
                 <button>Add</button>
             </form>
+            -->
+
+            <v-form>
+                <v-text-field
+                    v-model="newAddress"
+                    label="Add an IP Address"
+                ></v-text-field>
+                <v-btn round @click.native="addNewIP">Add</v-btn>
+            </v-form>
+
             <ul>
                 <ip-item
                 v-for="(ip, index) in ips"
@@ -29,7 +40,9 @@
                 v-on:remove="ips.splice(index, 1)"
                 ></ip-item>
             </ul>
-
+            <ul>
+                <v-btn dark >Run Scan</v-btn>
+            </ul>
 
             </v-flex>
             
