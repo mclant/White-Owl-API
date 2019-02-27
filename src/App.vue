@@ -32,14 +32,20 @@
     </div>
 
     <v-content
-      v-if="authenticated">
+      v-if="!authenticated">
       <HelloWorld/>
     </v-content>
 
-    <v-content
-      v-if="!authenticated">
-      <runScan/>
-    </v-content>
+    <v-container
+      v-if="authenticated">
+      <v-layout>
+        <v-flex
+          xs12
+        >
+          <runScan/>
+        </v-flex>
+      </v-layout>
+    </v-container>
 
   </v-app>
 </template>
