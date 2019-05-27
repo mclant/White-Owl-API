@@ -32,12 +32,12 @@
     </div>
 
     <v-content
-      v-if="!authenticated">
+      v-if="authenticated">
       <HelloWorld/>
     </v-content>
 
     <v-container
-      v-if="authenticated">
+      v-if="!authenticated">
       <v-layout>
         <v-flex
           xs12
@@ -58,12 +58,14 @@ const auth = new AuthService()
 
 import HelloWorld from './components/HelloWorld'
 import runScan from './components/run_scan'
+import bitcoin from './components/bitcoindata'
 
 export default {
   name: 'app',
   components: {
     HelloWorld,
     runScan,
+    bitcoin,
   },
   data () {
     return {

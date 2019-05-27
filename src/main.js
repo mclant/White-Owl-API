@@ -3,8 +3,12 @@ import './plugins/vuetify'
 import App from './App.vue'
 import router from './router';
 import Vuetify from 'vuetify'
+import Axios from 'axios'
+import VueResource from 'vue-resource'
 
-Vue.use(Vuetify)
+Vue.use(Vuetify);
+Vue.use(Axios);
+Vue.use(VueResource);
 
 Vue.config.productionTip = false
 /*

@@ -1,8 +1,8 @@
 <template>
     <div>
-        <li>
+        <li id="ipvalue">
           {{ address }}
-          <button v-on:click="$emit('remove')">Remove</button>
+          <v-btn round v-on:click="$emit('remove')">Remove</v-btn>
         </li>
     </div>
 </template>
