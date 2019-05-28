@@ -2,8 +2,14 @@
   <v-app>
     <v-toolbar app>
       <v-toolbar-title class="headline text-uppercase">
-        <span>Vuetify</span>
-        <span class="font-weight-light">MATERIAL DESIGN</span>
+        <v-img
+          :src="require('./assets/whiteowl_black.png')"
+          class="my-3"
+          contain
+          height="50"
+        ></v-img>
+        <span>White Owl | </span>
+        <span class="font-weight-light">ISaaS</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
 
@@ -58,14 +64,12 @@ const auth = new AuthService()
 
 import HelloWorld from './components/HelloWorld'
 import runScan from './components/run_scan'
-import bitcoin from './components/bitcoindata'
 
 export default {
   name: 'app',
   components: {
     HelloWorld,
     runScan,
-    bitcoin,
   },
   data () {
     return {

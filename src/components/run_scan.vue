@@ -8,39 +8,34 @@
             
 
             <v-flex 
-                xs5
+                xs6
+                offset-xs3
                 >
-                <p>here we will add a Template ID</p>
+                <p>Select a Template</p>
                 <v-select
                     v-model="selected"
                     :items="template_items"
-                    label="Select a Template ID"
+                    label="Template Options"
                     solo
                 ></v-select>
-                <span>selected value: {{selected}}</span>
+                <span>selected value: {{ selected }}</span>
             </v-flex>
 
+        </v-layout>
 
-
-            <v-flex xs5>
-            
-            <!--
-            <form v-on:submit.prevent="addNewIP">
-                <label for="new-ip">Add an IP Address</label><br>
-                <input
-                v-model="newAddress"
-                id="new-ip"
-                placeholder="add here"
-                >
-                <button>Add</button>
-            </form>
-            -->
-
+        <v-layout
+            text-xs-center
+            wrap
+            justify-space-between
+            align-start>
+            <v-flex 
+                xs6
+                offset-xs3>
             <v-form>
                 <v-text-field
                     v-on:keyup.enter="addNewIP"
                     v-model="newAddress"
-                    label="Add an IP Address"
+                    label="Add an IP Address or Range of IP Addresses"
                 ></v-text-field>
                 <v-btn round @click.native="addNewIP">Add</v-btn>
             </v-form>
@@ -95,6 +90,7 @@ export default {
                 { text: 'option 3', value: '4279536'},
                 { text: 'option 4', value: '5569001'},
             ],
+            //i think these templates will be things like 'Executive report' or 'technical report'
             selected: '',
         }
     },
