@@ -3,9 +3,14 @@
         <v-layout
             text-xs-center
             wrap
-            justify-space-between
             align-start>
             
+            <v-flex 
+                xs6
+                offset-xs3
+                >
+                <span>this users id: {{ selected }}</span>
+            </v-flex>
 
             <v-flex 
                 xs6
@@ -63,6 +68,7 @@
 </template>
 
 <script>
+
 const axios = require('axios');
 import IpItem from './IpItem'
 
@@ -85,13 +91,13 @@ export default {
             password: '3H2Z_f3EhGbWbtW',
             ip_list: '',
             template_items: [
-                { text: 'option 1', value: '5569003'},
-                { text: 'option 2', value: '5021898'},
-                { text: 'option 3', value: '4279536'},
-                { text: 'option 4', value: '5569001'},
+                { text: 'Executive Report', value: '4279536'},
+                { text: 'High Severity Vulnerability Report', value: '5569003'},
+                { text: 'Patch Report', value: '5021898'},
+                { text: 'High Severity Patch Report', value: '5569001'},
             ],
-            //i think these templates will be things like 'Executive report' or 'technical report'
             selected: '',
+            //ips_network_id: this.auth.user.user_metadata.ips_network_id,
         }
     },
     methods: {
@@ -125,7 +131,8 @@ export default {
                         report_title: 'White-Owl-Vulnerability-Report',
                         report_type: 'Scan',
                         //target_from: assets,  (should be the default so might not need to include it)
-                        ip_restriction: this.ip_list,
+                        ips: this.ip_list,
+                        //ips_network_id: this.ips_network_id,
                     },
                     auth: {
                         username: this.username,

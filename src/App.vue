@@ -1,30 +1,39 @@
 <template>
   <v-app>
-    <v-toolbar app>
-      <v-toolbar-title class="headline text-uppercase">
+    <v-toolbar 
+      dark
+      height="75px"
+      >
         <v-img
-          :src="require('./assets/whiteowl_black.png')"
+          :src="require('./assets/whiteowl.png')"
           class="my-3"
           contain
-          height="50"
+          height="45"
+          alt=""
         ></v-img>
-        <span>White Owl | </span>
+      <v-toolbar-title>
+        <span>WHITE<b>OWL</b> | </span>
         <span class="font-weight-light">ISaaS</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-
+      <v-spacer></v-spacer>
+      <v-spacer></v-spacer>
+      <v-spacer></v-spacer>
+      <v-spacer></v-spacer>
+      <v-spacer></v-spacer>
       <v-btn
         id="qsLoginBtn"
         v-if="!authenticated"
         @click="login"
+        color="error"
         >
         Log In
       </v-btn>
-
       <v-btn
         id="qsLogoutBtn"
         v-if="authenticated"
         @click="logout"
+        color="error"
         >
         Log Out
       </v-btn>
@@ -38,12 +47,12 @@
     </div>
 
     <v-content
-      v-if="authenticated">
+      v-if="!authenticated">
       <HelloWorld/>
     </v-content>
 
     <v-container
-      v-if="!authenticated">
+      v-if="authenticated">
       <v-layout>
         <v-flex
           xs12
