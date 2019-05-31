@@ -1,35 +1,40 @@
 <template>
     <v-container>
-        <v-layout
-            align-start
-            justify-space-around
-            row
-            fill-height
-            >
-            <!--
-            <v-flex 
-                xs6
-                offset-xs3
-                >
-                <span>this users id: {{ ips_network_id }}</span>
-            </v-flex>
-            -->
-            <v-flex xs3>
-                <v-card>
-                    <v-card-title>
-                        Select a Report Template
-                    </v-card-title>
+        <v-card
+        class="mx-auto"
+        max-width="500"
+        >
+            <v-card-title class="title font-weight-regular justify-space-between">
+                <span>{{ currentTitle }}</span>
+                <v-avatar
+                color="primary lighten-2"
+                class="subheading white--text"
+                size="24"
+                v-text="step"
+                ></v-avatar>
+            </v-card-title>
+
+            <v-window v-model="step">
+                <v-window-item :value="1">
+                    <v-card-text>
+                        <span class="caption grey--text text--darken-1">
+                        Select the template of the Report you would like to see
+                        </span>
+                    </v-card-text>
                     <v-select
                         v-model="selected_template"
                         :items="template_items"
                         label="Select a Template"
                         solo
                     ></v-select>
-                </v-card>
-            </v-flex>
-
-            <v-flex xs3>
-                <v-card>
+                </v-window-item>
+            
+                <v-window-item :value="2">
+                    <v-card-text>
+                        <span class="caption grey--text text--darken-1">
+                        Add an IP address or range of IP addresses
+                        </span>
+                    </v-card-text>
                     <v-form>
                         <v-text-field
                             v-on:keyup.enter="addNewIP"
@@ -47,35 +52,53 @@
                         v-on:remove="ips.splice(index, 1)"
                         ></ip-item>
                     </ul>
-                </v-card>
-            </v-flex>
+                </v-window-item>
 
-            <v-flex xs3>
-                <v-card>
-                    <v-card-title>
-                        Select an Output Format
-                    </v-card-title>
-                <v-select
-                    v-model="selected_output"
-                    :items="output_items"
-                    label="Select an Output Format"
-                    solo
-                ></v-select>
-                </v-card>
-            </v-flex>
+                <v-window-item :value="3">
+                    <v-card-text>
+                        <span class="caption grey--text text--darken-1">
+                        Select the format of how you would like to receive the output
+                        </span>
+                    </v-card-text>
+                    <v-select
+                        v-model="selected_output"
+                        :items="output_items"
+                        label="Select an Output Format"
+                        solo
+                    ></v-select>
+                </v-window-item>
 
-        </v-layout>
+                <v-window-item :value="4">
+                    <v-card-text>
+                        <span class="caption grey--text text--darken-1">
+                        If the parameters are finished, click to launch the report
+                        </span>
+                    </v-card-text>
+                    <v-btn color="error" @click.native="fetchData">Launch Report</v-btn>
+                </v-window-item>
+            </v-window>
 
+            <v-divider></v-divider>
 
-        <v-flex offset-xs5>
-            <ul>
-                <v-btn color="error" @click.native="fetchData">Launch Report</v-btn>
-            </ul>
-            <ul>
-                <p>{{info}}</p>
-            </ul>
-        </v-flex>
-
+            <v-card-actions>
+                <v-btn
+                :disabled="step === 1"
+                flat
+                @click="step--"
+                >
+                Back
+                </v-btn>
+                <v-spacer></v-spacer>
+                <v-btn
+                :disabled="step === 4"
+                color="primary"
+                depressed
+                @click="step++"
+                >
+                Next
+                </v-btn>
+            </v-card-actions>
+        </v-card>
     </v-container>
 </template>
 
@@ -90,6 +113,8 @@ export default {
     },
     data () {
         return {
+            step: 1,
+
             ipnumber: '1',
             id: '',
             address: '',
@@ -121,6 +146,16 @@ export default {
             //ips_network_id: user.user_metadata.ips_network_id,
         }
     },
+    computed: {
+        currentTitle () {
+            switch (this.step) {
+                case 1: return 'Select a Report Template'
+                case 2: return 'Add IP addresses'
+                case 3: return 'Select the Output Format'
+                default: return 'Launch the Report'
+            }
+        }
+    },
     methods: {
         addNewIP: function () {
             this.ips.push({
@@ -143,8 +178,8 @@ export default {
 
                 //post method
                 axios ({
-                    method: 'post',
-                    url: 'https://qualysapi.qg3.apps.qualys.com/api/2.0/fo/report',
+                    method: 'POST',
+                    url: 'https://qualysapi.qg3.apps.qualys.com/api/2.0/fo/report/',
                     data: {
                         action: 'launch',
                         template_id: this.selected_template,
@@ -162,7 +197,7 @@ export default {
                     config: {
                         headers: {
                             'X-Requested-With': 'Scanner ServiceAccount',
-                            //'Access-Control-Allow-Origin': 'http://localhost:8080',
+                            'Access-Control-Allow-Origin': '*',
                             //'Access-Control-Allow-Methods': 'POST',
                             //'Access-Control-Request-Method': 'POST',
                             //'Access-Control-Request-Headers': 'origin, x-requested-with',
