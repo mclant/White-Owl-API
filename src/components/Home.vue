@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <v-container>
     <h4 v-if="authenticated">
         You are logged in!
     </h4>
@@ -7,7 +7,7 @@
       You are not logged in! Please <a @click="auth.login()">Log In</a> to continue.
     </h4>
   <router-view></router-view>
-  </div>
+  </v-container>
 </template>
 
 <script>

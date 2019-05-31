@@ -3,6 +3,7 @@ import { AUTH_CONFIG } from './auth0-variables'
 import EventEmitter from 'eventemitter3'
 import router from './../router'
 
+
 export default class AuthService {
   accessToken
   idToken
@@ -20,6 +21,11 @@ export default class AuthService {
 
   login () {
     this.auth0.authorize()
+  }
+
+  getUser () {
+    user = this.userProfile;
+    return user;
   }
 
   handleAuthentication () {

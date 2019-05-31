@@ -1,5 +1,7 @@
 <template>
-  <v-app>
+  <v-app
+    id="inspire"
+    dark>
     <v-toolbar 
       dark
       height="75px"
@@ -39,7 +41,7 @@
       </v-btn>
     </v-toolbar>
 
-    <div class="container">
+    <div>
       <router-view
         :auth="auth"
         :authenticated="authenticated">
@@ -47,12 +49,12 @@
     </div>
 
     <v-content
-      v-if="!authenticated">
+      v-if="authenticated">
       <HelloWorld/>
     </v-content>
 
     <v-container
-      v-if="authenticated">
+      v-if="!authenticated">
       <v-layout>
         <v-flex
           xs12
@@ -67,9 +69,9 @@
 
 
 <script>
-import AuthService from './auth/AuthService'
+import AuthService from './auth/AuthService.js';
 
-const auth = new AuthService()
+const auth = new AuthService();
 
 import HelloWorld from './components/HelloWorld'
 import runScan from './components/run_scan'
@@ -83,7 +85,8 @@ export default {
   data () {
     return {
       auth,
-      authenticated: auth.authenticated
+      authenticated: auth.authenticated,
+      currentUser: '',
     }
   },
   created () {
@@ -101,7 +104,7 @@ export default {
     },
     logout () {
       auth.logout()
-    }
+    },
   }
 }
 </script>
