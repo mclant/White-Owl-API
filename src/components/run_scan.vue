@@ -106,12 +106,6 @@
 
 const axios = require('axios');
 import IpItem from './IpItem'
-import Auth0Lock from 'auth0-lock'
-
-var lock = new Auth0Lock(
-  'wIvsNVXWwRSkX001IewKhGpoKZPH1iaE',
-  'whiteowl.auth0.com'
-);
 
 export default {
     components: {

@@ -2,6 +2,12 @@ import auth0 from 'auth0-js'
 import { AUTH_CONFIG } from './auth0-variables'
 import EventEmitter from 'eventemitter3'
 import router from './../router'
+import Auth0Lock from 'auth0-lock'
+
+var lock = new Auth0Lock(
+  'wIvsNVXWwRSkX001IewKhGpoKZPH1iaE',
+  'whiteowl.auth0.com'
+);
 
 
 

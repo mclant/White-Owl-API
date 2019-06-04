@@ -49,12 +49,12 @@
     </div>
 
     <v-content
-      v-if="authenticated">
+      v-if="!authenticated">
       <HelloWorld/>
     </v-content>
 
     <v-container
-      v-if="!authenticated">
+      v-if="authenticated">
       <v-layout>
         <v-flex
           xs12
