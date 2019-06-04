@@ -2,7 +2,7 @@
     <v-container>
         <v-card
         class="mx-auto"
-        max-width="500"
+        max-width="700"
         >
             <v-card-title class="title font-weight-regular justify-space-between">
                 <span>{{ currentTitle }}</span>
@@ -25,7 +25,7 @@
                         v-model="selected_template"
                         :items="template_items"
                         label="Select a Template"
-                        solo
+                        box
                     ></v-select>
                 </v-window-item>
             
@@ -64,7 +64,7 @@
                         v-model="selected_output"
                         :items="output_items"
                         label="Select an Output Format"
-                        solo
+                        box
                     ></v-select>
                 </v-window-item>
 
@@ -106,6 +106,12 @@
 
 const axios = require('axios');
 import IpItem from './IpItem'
+import Auth0Lock from 'auth0-lock'
+
+var lock = new Auth0Lock(
+  'wIvsNVXWwRSkX001IewKhGpoKZPH1iaE',
+  'whiteowl.auth0.com'
+);
 
 export default {
     components: {

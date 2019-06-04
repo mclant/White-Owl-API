@@ -10,6 +10,7 @@
   "dependencies": {
     "ajax": "0.0.4",
     "auth0-js": "^9.10.0",
+    "auth0-lock": "^11.16.2",
     "axios": "^0.18.0",
     "cors": "^2.8.5",
     "eventemitter3": "^3.1.0",

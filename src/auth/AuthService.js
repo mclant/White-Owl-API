@@ -4,6 +4,7 @@ import EventEmitter from 'eventemitter3'
 import router from './../router'
 
 
+
 export default class AuthService {
   accessToken
   idToken
