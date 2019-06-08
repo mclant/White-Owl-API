@@ -26,13 +26,14 @@
                         :items="template_items"
                         label="Select a Template"
                         box
+                        id="select-template"
                     ></v-select>
                 </v-window-item>
             
                 <v-window-item :value="2">
                     <v-card-text>
                         <span class="caption grey--text text--darken-1">
-                        Add an IP address or range of IP addresses
+                        Ex. '172.255.255.1' or '10.1.1.0-10.1.255.255'
                         </span>
                     </v-card-text>
                     <v-form>
@@ -41,7 +42,12 @@
                             v-model="newAddress"
                             label="Add an IP Address or Range of IP Addresses"
                         ></v-text-field>
-                        <v-btn round light @click.native="addNewIP">Add</v-btn>
+                        <v-btn 
+                            round 
+                            light 
+                            @click.native="addNewIP"
+                            id="addbtn"
+                        >Add</v-btn>
                     </v-form>
 
                     <ul>
@@ -74,7 +80,13 @@
                         If the parameters are finished, click to launch the report
                         </span>
                     </v-card-text>
-                    <v-btn color="error" @click.native="fetchData">Launch Report</v-btn>
+                    <div id="contain-launch">
+                    <v-btn 
+                        color="error" 
+                        @click.native="fetchData"
+                        id="launchbtn"
+                    >Launch Report</v-btn>
+                    </div>
                 </v-window-item>
             </v-window>
 
@@ -105,8 +117,9 @@
 <script>
 
 const axios = require('axios');
-import IpItem from './IpItem'
-import Auth0Lock from 'auth0-lock'
+import IpItem from './IpItem';
+import Auth0Lock from 'auth0-lock';
+import './run_scan.css';
 
 var lock = new Auth0Lock(
   'wIvsNVXWwRSkX001IewKhGpoKZPH1iaE',
@@ -173,7 +186,9 @@ export default {
         fetchData: function() {
 
             //check that there have been IP addresses specified to be scanned
-            if (this.ips.length != 0){
+            if (this.ips.length != 0 &&
+                this.selected_template != '' &&
+                this.selected_output != ''){
                 //this for loop will make the variable 'ip_list' become a string of the IPs to be scanned
                 var i;
                 for (i = 0; i < this.ips.length; i++){
@@ -222,7 +237,7 @@ export default {
                 })
                 
             } else {
-                alert('Please enter one or more IP addresses to be scanned.');
+                alert('Make sure you have no empty fields before launching the report.');
             }
         }
     },
